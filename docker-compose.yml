@@ -1,0 +1,13 @@
+version: '3'
+services:
+  database:
+    image: 'mongo'
+    container_name: 'tweetmap_db'
+    environment:
+    - MONGO_INITDB_DATABASE=tweetapi
+    - MONGO_INITDB_ROOT_USERNAME=usuario
+    - MONGO_INITDB_ROOT_PASSWORD=secreto
+    volumes:
+    - ./mongo-volume:/data/db
+    ports:
+    - '27017-27019:27017-27019'
