@@ -4,3 +4,6 @@ from django.db import models
 
 class Tweet(models.Model):
     titulo = models.CharField(max_length=10,default='Titulo')
+
+class Geometry(models.Model):
+    name = models.IntegerField()

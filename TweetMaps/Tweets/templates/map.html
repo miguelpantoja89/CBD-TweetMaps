@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Leaflet sample</title>
+      <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+      <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+   </head>
+   
+   <body>
+      <div id = "map" style = "width:900px; height:580px"></div>
+      <script>
+        // Icon options
+        var iconOptions = {
+            iconUrl: "{% static 'logo.png' %}",
+            iconSize: [50, 50]
+         }
+         // Creating a custom icon
+         var customIcon = L.icon(iconOptions);
+         
+         // Creating Marker Options
+         var markerOptions = {
+            title: "MyLocation",
+            clickable: true,
+            draggable: false,
+            icon: customIcon
+         }
+         // Creating map options
+         var mapOptions = {
+            center: [37.392529, -5.994072],
+            zoom: 10
+         }
+         // Creating a map object
+         var map = new L.map('map', mapOptions);
+         
+         // Creating a Layer object
+         var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+         
+         // Adding layer to the map
+         map.addLayer(layer);
+         
+         // Creating a marker
+         var marker = L.marker([37.392529, -5.994072],markerOptions);
+         
+         // Adding marker to the map
+         marker.bindPopup('This is Tutorialspoint').openPopup();
+         marker.addTo(map);
+      </script>
+   </body>
+   
+</html>
