@@ -11,12 +11,6 @@ class MarkersMapView(TemplateView):
         marker = Tweet.objects.all()
         return render(request, self.template_name, {'data':'hola','patata':marker})
 
-class HeatMapView(TemplateView):
-    template_name = "heatmap.html"
-    def get(self, request):
-        marker = Tweet.objects.all()
-        return render(request, self.template_name, {'data':'hola','patata':marker})
-
 
 class StoreTweetsGoats(TemplateView):
     template_name = "map.html"
@@ -38,6 +32,5 @@ class StoreTweetsGoats(TemplateView):
             Tweet.objects.create(text='Prueba', created_at=created_at, titulo=text, latitud=coordinates[0][0][1], longitud=coordinates[0][0][0])
        
 
-        # marker = Tweet.objects.all()
-        # return render(request, self.template_name, {'data':'hola','patata':marker})
+    
         return redirect("/tweets/api/map")

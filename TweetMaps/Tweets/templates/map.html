@@ -4,11 +4,14 @@
 <html>
    <head>
       <title>Leaflet sample</title>
-      <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
       <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
       <script src="{% static 'leaflet-heat.js' %}"></script>
       <link rel="stylesheet" href="{% static 'mapa2.css' %}">
       <link rel="stylesheet" href="{% static 'card.css' %}">
+      <link
+      rel="stylesheet"
+      href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css"
+    />
    </head>
    
    <body>
@@ -48,7 +51,7 @@
             center: [37.392529, -5.994072],
             zoom: 1,
             minZoom: 1,
-            maxZoom: 15,
+            maxZoom: 11,
             dragging: true
          }
          // Creating a map object
@@ -69,24 +72,27 @@
           {% endfor %}
           let tweets = []
       {% for de in patata %}
-        tweets.push([{{de.latitud}},{{de.longitud}},20.5])
+        tweets.push([{{de.latitud}},{{de.longitud}},10.5])
       {% endfor %}
-      var heat = L.heatLayer(tweets,{radius: 50});
+      var heat = L.heatLayer(tweets,{radius: 30});
           
          
       var layers = {
-            Miguel :  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            Base :  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
           attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       }),
-            Chao: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            TopoLogico: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 }),
-Calor : heat,
+};
+
+var layers2 = {
+   Calor : heat,
 };
      
-         layers.Miguel.addTo(map);
+         layers.Base.addTo(map);
          // Adding layer to the map
-         L.control.layers(layers).addTo(map);
+         L.control.layers(layers,layers2).addTo(map);
       </script>
    </body>
    
