@@ -21,7 +21,7 @@
             <div id = "map" style = "width:800px; height:480px"></div>
          </div>
          <div class="tweets">
-            {% for device in patata%}
+            {% for device in patata2%}
             <div class="card">
                <div class="container">
                   <p>{{device.titulo}}</p>
@@ -67,7 +67,7 @@
          {% for device in patata %}
 			
 		
-         marker = new L.marker([{{device.latitud}}, {{device.longitud}}]).bindPopup("{{device.text}}").addTo(map);  
+         marker = new L.marker([{{device.latitud}}, {{device.longitud}}]).bindPopup("{{device.text}}<br>{{device.user}}<br><a href={{device.url}}>Tweet</a>").addTo(map);  
 		
           {% endfor %}
           let tweets = []

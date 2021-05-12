@@ -1,0 +1,22 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      ". . . . ."
+      "gra1 gra1 . gra2 gra2"
+      "gra1 gra1 . gra2 gra2"
+      ". . . . ."
+      "gra3 gra3 . gra4 gra4"
+      "gra3 gra3 . gra4 gra4";
+  }
+  
+  .gra1 { grid-area: gra1; }
+  
+  .gra2 { grid-area: gra2; }
+  
+  .gra3 { grid-area: gra3; }
+  
+  .gra4 { grid-area: gra4; }
+  
