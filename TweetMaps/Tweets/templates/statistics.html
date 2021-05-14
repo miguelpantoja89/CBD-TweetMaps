@@ -1,133 +1,202 @@
 {% load static %}
 <html>
-    <head>
+  <head>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
-    <link rel="stylesheet" href="{% static 'stats.css' %}">
-</head>
-<body>
+    <link rel="stylesheet" href="{% static 'stats.css' %}" />
+  </head>
+  <body>
     {% include 'header.html' %}
-
     <div class="grid-container">
-        <div class="gra1">
-            <canvas id="chart" ></canvas>
-        </div>
-        <div class="gra2">
-            <canvas id="popo"  ></canvas>
-        </div>
-        <div class="gra3">
-            <canvas id="chart3"  ></canvas>
-        </div>
-        <div class="gra4">
-            <canvas id="myChart"></canvas>
-        </div>
+    
+      <div class="gra1">
+        <canvas id="chart"></canvas>
       </div>
-    
+  <div class="gra2">
+    <canvas id="popo"></canvas>
+  </div>
+  <div class="gra3">
+    <canvas id="chart3"></canvas>
+  </div>
+  <div class="gra4">
+    <canvas id="myChart"></canvas>
+  </div>
+  
+ 
 
+    <script>
+      let ctx = document.getElementById("chart").getContext("2d");
+      let countries = [];
+      {% for p in paises %}
+            countries.push("{{p}}")
+      {% endfor %}
 
-<script>
-let ctx = document.getElementById("chart").getContext("2d");
+      let chart = new Chart(ctx, {
+        type: "bar",
+        data: {
 
-let chart = new Chart(ctx, {
-  type: "bar",
-  data: {
-     labels: ["2020/Q1", "2020/Q2", "2020/Q3", "2020/Q4","2020/Q5"],
-     datasets: [
-        {
-          label: "Gross volume ($)",
-          backgroundColor: "#79AEC8",
-          borderColor: "#417690",
-          data: [26900, 28700, 27300, 29200, 29200]
-        }
-     ]
-  },
-  options: {
-     title: {
-        text: "Gross Volume in 2020",
-        display: true
-     }
-  }
-});
-
-
-
-    let ctx1 = document.getElementById("popo").getContext("2d");
-    
-    let chart1 = new Chart(ctx1, {
-      type: "doughnut",
-      data: {
-         labels: ["2021/Q1", "2021/Q2", "2021/Q3", "2021/Q4"],
-         datasets: [
-            {
-              label: "Gross volume ($)",
-              backgroundColor: [
-      'rgb(255, 99, 132)',
-      'rgb(54, 162, 235)',
-      'rgb(255, 205, 86)'
-    ],
-    hoverOffset: 4,
-              borderColor: ['rgb(255, 99, 132)',
-      'rgb(54, 162, 235)',
-      'rgb(255, 205, 86)'],
-              data: [26900, 28700, 27300, 29200]
+           labels: countries,
+           datasets: [
+              {
+               scaleStartValue:-1,
+                label: "Numero Tweets",
+                backgroundColor: 'rgb(54, 162, 235)',
+                borderColor: '#073D79',
+                data: {{tweetsPorPais}},
+              }
+           ]
+        },
+        options: {
+          legend: {
+                labels: {
+                    fontColor: "white",
+                    fontSize: 15
+                }
+            },
+          
+           title: {
+              text: "Numero Tweets por pais",
+              display: true,
+              fontColor: "white"
+           },
+           scales:{
+            yAxes:[{
+              
+               ticks: {
+                fontColor: "white",
+            stepSize: 1,
+            min: 0,
             }
-         ]
-      },
-      options: {
-         title: {
-            text: "Gross Volume in 2020",
-            display: true
-         }
-      }
-    });
-    
-let dias = document.getElementById("chart3").getContext("2d");
-
-let diasChart = new Chart(dias, {
-  type: "line",
-  data: {
-     labels: ["2020/Q1", "2020/Q2", "2020/Q3", "2020/Q4","2020/Q5"],
-     datasets: [
-        {
-          label: "Gross volume ($)",
-          backgroundColor: "#79AEC8",
-          borderColor: "#417690",
-          data: [26900, 28700, 27300, 29200, 29200]
+            }]
+            ,
+            xAxes: [{
+                ticks: {
+                    fontColor: 'white'
+                },
+            }]
+           }
         }
-     ]
-  },
-  options: {
-     title: {
-        text: "Gross Volume in 2020",
-        display: true
-     }
-  }
-});
+      });
 
-let semana = document.getElementById("myChart").getContext("2d");
 
-let semanaChart = new Chart(semana, {
-  type: "radar",
-  data: {
-     labels: ["2020/Q1", "2020/Q2", "2020/Q3", "2020/Q4","2020/Q5"],
-     datasets: [
-        {
-          label: "Gross volume ($)",
-          backgroundColor: "#79AEC8",
-          borderColor: "#417690",
-          data: [26900, 28700, 27300, 29200, 29200]
+
+          let ctx1 = document.getElementById("popo").getContext("2d");
+
+          let chart1 = new Chart(ctx1, {
+            type: "doughnut",
+            data: {
+               labels: ["00:00 - 12:00 h", "12:00 - 00:00 h"],
+               datasets: [
+                  {
+                    label: "Sectores horarios de publicacion",
+                    backgroundColor: [
+            'rgb(54, 162, 235)',
+            '#073D79'
+          ],
+          hoverOffset: 4,
+                    borderColor: [ 'rgb(54, 162, 235)',
+            '#073D79'],
+                    data: [{{horasM}}, {{horasT}}]
+                  }
+               ]
+            },
+            options: {
+              legend: {
+                labels: {
+                    fontColor: "white",
+                    fontSize: 15
+                }
+            },
+               title: {
+                fontColor: "white",
+                  text: "Sectores horarios de publicacion",
+                  display: true
+               }
+            }
+          });
+
+      let dias = document.getElementById("chart3").getContext("2d");
+
+      let diasChart = new Chart(dias, {
+        type: "line",
+        data: {
+           labels: ["Lunes", "Martes", "Miercoles", "Jueves","Viernes", "Sabado", "Domingo"],
+           datasets: [
+              {
+                label: "# Tweets por dia",
+                backgroundColor:'#073D79',
+                borderColor: 'rgb(54, 162, 235)',
+                data: {{semanaLast}}
+              }
+           ]
+        },
+        options: {
+          
+           scales:{
+            yAxes:[{
+              
+               ticks: {
+                fontColor: "white",
+            stepSize: 1,
+            min: 0,
+            }
+            }],
+            xAxes: [{
+                ticks: {
+                    fontColor: 'white'
+                },
+            }]
+           },
+          legend: {
+                labels: {
+                    fontColor: "white",
+                    fontSize: 15
+                }
+            },
+           title: {
+            fontColor: "white",
+              text: "Tweets por dia en la ultima semana",
+              display: true
+           }
         }
-     ]
-  },
-  options: {
-     title: {
-        text: "Gross Volume in 2020",
-        display: true
-     }
-  }
-});
+      });
 
+      let semana = document.getElementById("myChart").getContext("2d");
 
+      let semanaChart = new Chart(semana, {
+        type: "pie",
+        data: {
+           labels: ["Aplicacion Web", "Aplicacion Movil"],
+           datasets: [
+              {
+                label: "Tweets #",
+                backgroundColor:[
+                'rgb(54, 162, 235)',
+            '#073D79'
+          ],
+                borderColor: [
+                'rgb(54, 162, 235)',
+            '#073D79'
+          ],
+                data: [{{web}}, {{app}}]
+              }
+           ]
+        },
+        options: {
+          legend: {
+                labels: {
+                    fontColor: "white",
+                    fontSize: 15
+                }
+            },
+           title: {
+            fontColor: "white",
+              text: "Tweets publicados en App frente en la Web",
+              display: true
+           }
+        }
+      });
 
+      
     </script>
-    </body>
+  </body>
 </html>

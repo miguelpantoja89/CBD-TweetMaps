@@ -15,3 +15,26 @@
   .container {
     padding: 1px 16px;
   }
+  a:link {
+    color: #6495ED;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a:visited {
+    color: pink;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: blue;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a:active {
+    color: black;
+    background-color: transparent;
+    text-decoration: underline;
+  }

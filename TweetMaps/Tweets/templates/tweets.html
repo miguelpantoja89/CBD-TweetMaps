@@ -1,0 +1,44 @@
+{% load static %}
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
+    <link rel="stylesheet" href="{% static 'stats.css' %}" />
+    <link rel="stylesheet" href="{% static 'card.css' %}">
+    <link rel="stylesheet" href="{% static 'allTweets.css' %}">
+  </head>
+  <body>
+    {% include 'header.html' %}
+    <div class="grid-container">
+        <div class="tw1">
+            {% for device in tweets1%}
+            <div class="card">
+               <div class="container">
+                <p>{{device.user}}             --------------   {{device.posted}} </p>
+                  <p>{{device.titulo}}</p>
+                  <p>{{device.location}}</p>
+                  <p ><a href="{{device.url}}">Ver tweet en Twitter</a></p>
+               </div>
+             </div>
+             {% endfor %}
+        </div>
+        <div class="tw2">
+            {% for device in tweets2%}
+            <div class="card">
+               <div class="container">
+                <p>{{device.user}}             --------------   {{device.posted}} </p>
+                  <p>{{device.titulo}}</p>
+                  <p>{{device.location}}</p>
+                  <p><a href="{{device.url}}">Ver tweet en Twitter</a></p>
+               </div>
+             </div>
+             {% endfor %}
+        </div>
+      </div>
+   
+ 
+  
+ 
+
+    
+  </body>
+</html>

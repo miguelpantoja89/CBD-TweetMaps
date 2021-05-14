@@ -76,13 +76,8 @@ body {
 }
 </style>
 <div class="topnav">
-    <a class="active" href="{% url 'mapa' %}">Tweets</a>
+    <a class="active" href="{% url 'mapa' %}">Mapa</a>
     <a href="{% url 'welove' %}">#WeLoveGoats</a>
     <a href="{% url 'stats' %}">Estadisticas</a>
-    <div class="search-container">
-      <form action="{% url 'searching' %}">
-        <input type="text" placeholder="Busca por hashtag #.." name="search">
-        <button type="submit"><i class="fa fa-search"></i></button>
-      </form>
-    </div>
+    <a href="{% url 'tweets' %}">Tweets</a>
   </div>

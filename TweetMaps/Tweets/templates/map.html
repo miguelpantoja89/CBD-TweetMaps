@@ -21,10 +21,32 @@
             <div id = "map" style = "width:800px; height:480px"></div>
          </div>
          <div class="tweets">
+            <p># Tweets por idioma</p>
+            <div class="card">
+               <div class="container">
+            {% for idioma, num in idiomas%}
+            
+                  {{idioma}}:{{num}}
+               
+             {% endfor %}
+            </div>
+         </div>
+            <p>Tweet con más RTs</p>
+            {% for device in maxRT%}
+            <div class="card">
+               <div class="container">
+                  <p>{{device.titulo}}</p>
+                  <p><a href="{{device.url}}">Ver tweet en Twitter</a></p>
+               </div>
+             </div>
+             {% endfor %}
+             <hr>
+             <p>Últimos tweets</p>
             {% for device in patata2%}
             <div class="card">
                <div class="container">
                   <p>{{device.titulo}}</p>
+                  <p><a href="{{device.url}}">Ver tweet en Twitter</a></p>
                </div>
              </div>
              {% endfor %}
