@@ -49,7 +49,7 @@ class StoreTweetsGoats(TemplateView):
 'Basque', 'ht':'Creole',  'ne': 'Nepali','es':	'Spanish', 'ja':'Japanese','en':'English','tl':'Tagalog','und':'Undefined',
 'bn':'Bengali', 'iw':'Hebrew', 'no':'Norwegian', 'sv': 'Swedish', 'bs':'Bosnian', 'hi':'Hindi', 'or':'Oriya', 'tl':'Tagalog', 'bg':'Bulgarian', 
 'hi-Latn':'Latinized Hindi', 'pa':'Panjabi', 'ta':'Tamil', 'my':'Burmese', 'hu': 'Hungarian', 'ps': 'Pashto', 'te': 'Telugu', 'hr': 'Croatian',
-'is': 'Icelandic', 'fa': 'Persian', 'th': 'Thai', 'ca': 'Caralan', 'in': 'Indonesian', 'pl': 'Polish', 'bo': 'Tibetan', 'cs':'Czech', 'it': 'Italian',
+'is': 'Icelandic', 'fa': 'Persian', 'th': 'Thai', 'ca': 'Catalan', 'in': 'Indonesian', 'pl': 'Polish', 'bo': 'Tibetan', 'cs':'Czech', 'it': 'Italian',
 'pt': 'Portuguese', 'zh-TW': 'Traditional Chinese', 'da': 'Danish', 'ro': 'Romanian', 'tr': 'Turkish', 'nl': 'Dutch', 'kn': 'Kannada', 'ru': 'Russian', 
 'uk': 'Ukranian', 'km': 'Khmer', 'sr':'Serbian', 'ur':'Urdu', 'et': 'Estonian', 'ko': 'Koraean', 'zh-CN': 'Simplified Chinese', 'ug': 'Uyghur', 
 'fi': 'Finnish', 'lo':'Lao', 'sd': 'Sindhi', 'vi': 'Vietnamese', 'fr': 'French', 'lv': 'Latvian', 'si': 'Sinhala', 'cy': 'Welsh', 'ka': 'Georgian', 'lt': 'Lituanian'
