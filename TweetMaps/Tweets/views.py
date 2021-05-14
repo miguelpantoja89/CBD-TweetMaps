@@ -42,24 +42,17 @@ class StoreTweetsGoats(TemplateView):
         api = tweepy.API(auth,wait_on_rate_limit=True)
         today = datetime.date.today()
         yesterday= today - datetime.timedelta(days=1)
-        #'Bengali': 'bn'	'Hebrew': 'iw'	'Norwegian': 'no'	'Swedish': 'sv'
-# 'Bosnian': 'bs'	'Hindi': 'hi'	'Oriya': 'or'	'Tagalog': 'tl'
-# 'Bulgarian': 'bg'	'Latinized Hindi': 'hi-Latn'	'Panjabi': 'pa'	'Tamil': 'ta'
-# 'Burmese': 'my'	'Hungarian': 'hu'	'Pashto': 'ps'	'Telugu': 'te'
-# 'Croatian': 'hr'	'Icelandic': 'is'	'Persian': 'fa'	'Thai': 'th'
-# 'Catalan': 'ca'	'Indonesian': 'in'	'Polish': 'pl'	'Tibetan': 'bo'
-# 'Czech': 'cs'	'Italian': 'it'	'Portuguese': 'pt'	'Traditional Chinese':'zh-TW'
-# 'Danish': 'da'	'Japanese': 'ja'	'Romanian': 'ro'	'Turkish': 'tr'
-# 'Dutch': 'nl'	'Kannada': 'kn'	'Russian': 'ru'	'Ukrainian': 'uk'
-# 	'Khmer': 'km'	'Serbian': 'sr'	'Urdu': 'ur'
-# 'Estonian': 'et'	'Korean': 'ko'	'Simplified Chinese': 'zh-CN'	'Uyghur': 'ug'
-# 'Finnish': 'fi'	'Lao': 'lo'	'Sindhi': 'sd'	'Vietnamese': 'vi'
-# 'French': 'fr'	'Latvian': 'lv'	'Sinhala': 'si'	'Welsh': 'cy'
-# 'Georgian': 'ka'	'Lithuanian': 'lt'
+
         bcp47_dictionary = { 'am':'Amharic', 'de':'German', 'ml':'Malayalam', 'sk':'Slovak','ar' : 
 'Arabic', 'el':'Greek','dv': 'Maldivian', 'sl':'Slovenian',
 'hy': 'Armenian', 'gu' : 'Gujarati', 'mr': 	'Marathi', 'ckb': 'Kurdish','eu' : 
 'Basque', 'ht':'Creole',  'ne': 'Nepali','es':	'Spanish', 'ja':'Japanese','en':'English','tl':'Tagalog','und':'Undefined',
+'bn':'Bengali', 'iw':'Hebrew', 'no':'Norwegian', 'sv': 'Swedish', 'bs':'Bosnian', 'hi':'Hindi', 'or':'Oriya', 'tl':'Tagalog', 'bg':'Bulgarian', 
+'hi-Latn':'Latinized Hindi', 'pa':'Panjabi', 'ta':'Tamil', 'my':'Burmese', 'hu': 'Hungarian', 'ps': 'Pashto', 'te': 'Telugu', 'hr': 'Croatian',
+'is': 'Icelandic', 'fa': 'Persian', 'th': 'Thai', 'ca': 'Caralan', 'in': 'Indonesian', 'pl': 'Polish', 'bo': 'Tibetan', 'cs':'Czech', 'it': 'Italian',
+'pt': 'Portuguese', 'zh-TW': 'Traditional Chinese', 'da': 'Danish', 'ro': 'Romanian', 'tr': 'Turkish', 'nl': 'Dutch', 'kn': 'Kannada', 'ru': 'Russian', 
+'uk': 'Ukranian', 'km': 'Khmer', 'sr':'Serbian', 'ur':'Urdu', 'et': 'Estonian', 'ko': 'Koraean', 'zh-CN': 'Simplified Chinese', 'ug': 'Uyghur', 
+'fi': 'Finnish', 'lo':'Lao', 'sd': 'Sindhi', 'vi': 'Vietnamese', 'fr': 'French', 'lv': 'Latvian', 'si': 'Sinhala', 'cy': 'Welsh', 'ka': 'Georgian', 'lt': 'Lituanian'
         }
         tweets_list = tweepy.Cursor(api.search, q="#WeLoveGoats -filter:retweets",tweet_mode='extended').items()
         for tweet in tweets_list:
@@ -68,7 +61,7 @@ class StoreTweetsGoats(TemplateView):
             username = tweet.user.screen_name 
             # tweet.id
             # retweet_count
-            # bcp47_dictionary[tweet.lang]
+            language = bcp47_dictionary[tweet.lang]
             
             url = "https://twitter.com/"+username+"/status/"+str(tweet.id)
 
