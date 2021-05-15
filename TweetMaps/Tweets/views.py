@@ -21,7 +21,7 @@ class MarkersMapView(TemplateView):
         marker = Tweet.objects.all()
         marker2 = Tweet.objects.all()[0:4]
         tweet_max_rt = Tweet.objects.aggregate(num_retweets=Max('num_retweets'))['num_retweets']
-        tweet_RT = Tweet.objects.filter(num_retweets=tweet_max_rt)
+        tweet_RT = Tweet.objects.filter(num_retweets=tweet_max_rt)[0]
         idiomas = Tweet.objects.values('language').distinct()
         lang = []
         tweets_byLang = []

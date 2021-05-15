@@ -32,14 +32,14 @@
             </div>
          </div>
             <p>Tweet con más RTs</p>
-            {% for device in maxRT%}
+            
             <div class="card">
                <div class="container">
-                  <p>{{device.titulo}}</p>
-                  <p><a href="{{device.url}}">Ver tweet en Twitter</a></p>
+                  <p>{{maxRT.titulo}}</p>
+                  <p><a href="{{maxRT.url}}">Ver tweet en Twitter</a></p>
                </div>
              </div>
-             {% endfor %}
+             
              <hr>
              <p>Últimos tweets</p>
             {% for device in patata2%}
