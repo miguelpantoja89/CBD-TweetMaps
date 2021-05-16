@@ -5,6 +5,7 @@ import tweepy
 import datetime
 from django.db.models import Max
 from django.conf import settings
+import random
 
 class AllTweetsView(TemplateView):
     template_name="tweets.html"
@@ -118,7 +119,9 @@ class StoreTweetsGoats(TemplateView):
             url = "https://twitter.com/"+username+"/status/"+str(tweet.id)
 
             if(tweet.place is None):
-                coordinates = [[['-5.97317','37.38283']]]
+                longitud = round(random.uniform(-5.67317, -5.97317), 6)
+                latitud = round(random.uniform(37.18283, 37.38283), 6)
+                coordinates = [[[longitud,latitud]]]
                 country = 'Spain'
             else:
                 country = tweet.place.country
