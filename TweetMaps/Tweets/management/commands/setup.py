@@ -8,4 +8,4 @@ class Command(BaseCommand):
         call_command("migrate")
         call_command("makemigrations", "Tweets")
         call_command("migrate","Tweets")
-        call_command('createsuperuser', interactive=False, username='admin',password='admin3', email='admin@admin.com')
+        call_command('createadmin')
