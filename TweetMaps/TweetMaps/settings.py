@@ -95,7 +95,7 @@ DATABASES = {
              },
             'NAME': 'tweetmap_db',
             'CLIENT': {
-                'host': 'mongodb://usuario:secreto@127.0.0.1:27017',
+                'host': 'mongodb://usuario:secreto@mongodb',
                 'port': 27017,
                 'username': 'usuario',
                 'password': 'secreto',
