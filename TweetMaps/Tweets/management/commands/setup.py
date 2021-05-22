@@ -9,8 +9,8 @@ class Command(BaseCommand):
     help = 'Sets up the system'
 
     def handle(self, *args, **kwargs):
+        if os.path.exists('/TweetMaps/Tweets/migrations'):
+            call_command("migrate","Tweets","zero")
         call_command("migrate")
-        call_command("migrate","Tweets","zero")
         call_command("makemigrations", "Tweets")
         call_command("migrate","Tweets")
-        call_command('createadmin')
