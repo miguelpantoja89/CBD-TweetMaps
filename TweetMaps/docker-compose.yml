@@ -7,7 +7,6 @@ volumes:
 services:
   mongodb:
     image: mongo
-    restart: always
     volumes:
       - ./mongo-volume:/data/db
     environment:
@@ -17,46 +16,15 @@ services:
     ports:
       - 27017:27017
 
-  mongo-express:
-    image: mongo-express
-    restart: always
-    ports:
-      - 8081:8081
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: mongoadmin
 
   web:
-    image: app
+    image: miqpanbas/cbd-tweetmaps
     restart: always
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/TweetMaps
+    command: bash -c "python manage.py setup && python manage.py runserver 0.0.0.0:8000"
     ports:
       - 8000:8000
     links:
       - mongodb
     depends_on:
-      - migration
+      - mongodb
 
-  migration:
-    build: .
-    image: app
-    command: python manage.py migrate
-    volumes:
-      - .:/TweetMaps
-    links:
-      - mongodb
-    depends_on:
-      - make_migrations
-
-  make_migrations:
-    build: .
-    image: app
-    command: python manage.py makemigrations
-    volumes:
-      - .:/TweetMaps
-    links:
-      - mongodb
-    depends_on:
-      - mongodb
